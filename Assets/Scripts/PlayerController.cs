@@ -22,4 +22,16 @@ public class PlayerController:MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("game over");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Score +1");
+    }
+
+
+
 }
