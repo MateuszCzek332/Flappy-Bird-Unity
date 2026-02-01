@@ -13,8 +13,11 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("spawn", delay, time);
     }
 
-    private void spawn() { 
-        Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-heightRange, heightRange), 0);
-        Instantiate(pipe, spawnPos, transform.rotation);
+    private void spawn() {
+        if (!GameManager.isGameOver())
+        {
+            Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-heightRange, heightRange), 0);
+            Instantiate(pipe, spawnPos, transform.rotation);
+        }
     }
 }

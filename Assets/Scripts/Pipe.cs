@@ -14,11 +14,12 @@ public class Pipe : MonoBehaviour
     }
 
     private void moveLeft() {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
-
-        if(transform.position.x < -20)
-            Destroy(gameObject);
-        
+        if (!GameManager.isGameOver())
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            if (transform.position.x < -20)
+                Destroy(gameObject);
+        }
     }
     
 }

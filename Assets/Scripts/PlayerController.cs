@@ -18,20 +18,20 @@ public class PlayerController:MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !GameManager.isGameOver())
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        GameManager.setGameOver();
         Debug.Log("game over");
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        GameManager.UpdateScore();
         Debug.Log("Score +1");
     }
-
-
 
 }
