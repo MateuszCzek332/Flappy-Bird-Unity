@@ -25,13 +25,11 @@ public class PlayerController:MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameManager.setGameOver();
-        Debug.Log("game over");
     }
 
     private void OnTriggerEnter(Collider other)
     {
         GameManager.UpdateScore();
-        Debug.Log("Score +1");
     }
 
 }
