@@ -24,7 +24,7 @@ public class PlayerController:MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameManager.setGameOver();
+        GameManager.GameOver();
     }
 
     private void OnTriggerEnter(Collider other)

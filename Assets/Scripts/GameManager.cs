@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -7,15 +8,18 @@ public class GameManager
     static private int score = 0;
     
     static private UIManager ui;
+
     public static void RegisterUI(UIManager uiManager)
     {
         ui = uiManager;
+        ui.showStartPanel();
+        Time.timeScale = 0f;
     }
 
-    public static void restart()
-    {
-        gameOver = false;
-        score = 0;
+    public static void startGame() {
+        setStartStats();
+        Time.timeScale = 1f;
+        ui.hideStartPanel();
     }
     static public void UpdateScore(int points = 1)
     {
@@ -23,14 +27,31 @@ public class GameManager
         ui.UpdateScore(score);
     }
 
-    static public bool isGameOver() {
+    private static void setStartStats() {
+        gameOver = false;
+        score = 0;
+    }
+
+    static public bool isGameOver()
+    {
         return gameOver;
     }
 
-    static public void setGameOver()
+    static public void GameOver()
     {
         gameOver = true;
-        ui.setGameOverScreen();
+        Time.timeScale = 0f;
+        ui.showGameOverScreen();
+    }
+
+    public static void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        setStartStats();
+        Time.timeScale = 1f;
+        ui.UpdateScore(score);
+        ui.hideStartPanel();
+        ui.hideGameOverScreen();
     }
 
 }

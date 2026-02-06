@@ -6,11 +6,11 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]private TextMeshProUGUI scoretext;
     [SerializeField]private GameObject gameOverPanel;
+    [SerializeField] private GameObject startPanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GameManager.RegisterUI(this);
-        gameOverPanel.SetActive(false);
         scoretext.text = "";
     }
 
@@ -18,14 +18,32 @@ public class UIManager : MonoBehaviour
         scoretext.text = newScore.ToString();
     }
 
-    public void setGameOverScreen(){
+    public void showGameOverScreen(){
         gameOverPanel.SetActive (true);
-        Time.timeScale = 0f;
     }
 
-    public void restartGame() {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GameManager.restart();
+    public void hideGameOverScreen()
+    {
+        gameOverPanel.SetActive(false);
+    }
+
+    public void showStartPanel()
+    {
+        startPanel.SetActive(true);
+    }
+
+    public void hideStartPanel()
+    {
+        startPanel.SetActive(false);
+    }
+
+    public void startButtonOnClick()
+    {
+        GameManager.startGame();
+    }
+
+    public void restartButtonOnClick()
+    {
+        GameManager.restartGame();
     }
 }
