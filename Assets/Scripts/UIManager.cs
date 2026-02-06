@@ -4,27 +4,35 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]private TextMeshProUGUI scoretext;
-    [SerializeField]private GameObject gameOverPanel;
+    [SerializeField] private TextMeshProUGUI currentScoreText;
+    [SerializeField] private TextMeshProUGUI gameScoreText;
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject bestScoreMassage;
     [SerializeField] private GameObject startPanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GameManager.RegisterUI(this);
-        scoretext.text = "";
+        currentScoreText.text = "";
     }
 
     public void UpdateScore(int newScore) {
-        scoretext.text = newScore.ToString();
+        currentScoreText.text = newScore.ToString();
     }
 
-    public void showGameOverScreen(){
+    public void showGameOverScreen(int gameScore){
         gameOverPanel.SetActive (true);
+        gameScoreText.text = gameScore.ToString();
+        if(gameScore> SaveSystem.GetBestScore())
+            bestScoreMassage.SetActive(true);
+
     }
 
     public void hideGameOverScreen()
     {
         gameOverPanel.SetActive(false);
+        bestScoreMassage.SetActive (false);
+        gameScoreText.text = "";
     }
 
     public void showStartPanel()
