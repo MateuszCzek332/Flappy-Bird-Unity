@@ -8,6 +8,7 @@ public class GameManager
     static private int score = 0;
     
     static private UIManager ui;
+    static private AudioManager audio;
 
     public static void RegisterUI(UIManager uiManager)
     {
@@ -16,10 +17,16 @@ public class GameManager
         Time.timeScale = 0f;
     }
 
+    public static void RegisterAudio(AudioManager audioManager)
+    {
+        audio = audioManager;
+    }
+
     public static void startGame() {
         setStartStats();
         Time.timeScale = 1f;
         ui.hideStartPanel();
+        audio.playBackgroundMusic();
     }
     static public void UpdateScore(int points = 1)
     {
@@ -40,6 +47,7 @@ public class GameManager
     static public void GameOver()
     {
         gameOver = true;
+        audio.stopbackgroundMusic();
         ui.showGameOverScreen(score);
         SaveSystem.SaveScore(score);
         Time.timeScale = 0f;
