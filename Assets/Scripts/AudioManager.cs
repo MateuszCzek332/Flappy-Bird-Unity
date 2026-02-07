@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip jumpAudioClip;
     [SerializeField] private AudioClip deathhAudioClip;
     [SerializeField] private AudioClip scoreAudioClip;
-
+    
     [SerializeField] private AudioClip backgroundAudioClip;
     private AudioSource backgroundAudioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

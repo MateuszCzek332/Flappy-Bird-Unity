@@ -27,7 +27,7 @@ public class PlayerController:MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        audioManager.playDeathSound();
+        //audioManager.playDeathSound();
         GameManager.GameOver();
     }
 

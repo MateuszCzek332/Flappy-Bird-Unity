@@ -48,6 +48,7 @@ public class GameManager
     {
         gameOver = true;
         audio.stopbackgroundMusic();
+        audio.playDeathSound();
         ui.showGameOverScreen(score);
         SaveSystem.SaveScore(score);
         Time.timeScale = 0f;
