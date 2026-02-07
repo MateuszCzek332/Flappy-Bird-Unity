@@ -42,7 +42,6 @@ public class GameManager
         gameOver = true;
         ui.showGameOverScreen(score);
         SaveSystem.SaveScore(score);
-        Debug.Log(score.ToSafeString() + ", " + SaveSystem.GetBestScore().ToSafeString() );
         Time.timeScale = 0f;
 
     }

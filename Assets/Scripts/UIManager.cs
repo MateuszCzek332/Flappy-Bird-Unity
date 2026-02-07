@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour
         gameScoreText.text = gameScore.ToString();
         if(gameScore> SaveSystem.GetBestScore())
             bestScoreMassage.SetActive(true);
-
     }
 
     public void hideGameOverScreen()
