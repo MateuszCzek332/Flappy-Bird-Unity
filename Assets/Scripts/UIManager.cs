@@ -9,11 +9,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject bestScoreMassage;
     [SerializeField] private GameObject startPanel;
+    [SerializeField] private GameObject themeSelectionPanel;
+
+    [SerializeField] private int selectedTheme = 0;   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GameManager.RegisterUI(this);
         currentScoreText.text = "";
+        selectedTheme = SaveSystem.GetLastTheme();
     }
 
     public void UpdateScore(int newScore) {
@@ -44,9 +48,27 @@ public class UIManager : MonoBehaviour
         startPanel.SetActive(false);
     }
 
+    public void showThemeSelectionPanel()
+    {
+        themeSelectionPanel.SetActive(true);
+    }
+
+    public void hideThemeSelectionPanel()
+    {
+        themeSelectionPanel.SetActive(false);
+    }
+
+    public void selectTheme(int themeNumber) {
+        if (themeNumber < 0)
+            return;
+
+        selectedTheme = themeNumber;
+        SaveSystem.SaveTheme(selectedTheme);
+    }
+
     public void startButtonOnClick()
     {
-        GameManager.startGame();
+        GameManager.startGame(selectedTheme);
     }
 
     public void restartButtonOnClick()

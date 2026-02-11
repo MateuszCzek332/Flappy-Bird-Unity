@@ -28,12 +28,12 @@ public class GameManager
         spawner = Spawner;
     }
 
-    public static void startGame() {
+    public static void startGame(int pipesTheme) {
         setStartStats();
         Time.timeScale = 1f;
         ui.hideStartPanel();
         audio.playBackgroundMusic();
-        spawner.selectPipe(2);
+        spawner.selectPipe(pipesTheme);
     }
     static public void UpdateScore(int points = 1)
     {
