@@ -9,6 +9,7 @@ public class GameManager
     
     static private UIManager ui;
     static private AudioManager audio;
+    static private Spawner spawner;
 
     public static void RegisterUI(UIManager uiManager)
     {
@@ -22,11 +23,17 @@ public class GameManager
         audio = audioManager;
     }
 
+    public static void RegisterSpawner(Spawner Spawner)
+    {
+        spawner = Spawner;
+    }
+
     public static void startGame() {
         setStartStats();
         Time.timeScale = 1f;
         ui.hideStartPanel();
         audio.playBackgroundMusic();
+        spawner.selectPipe(2);
     }
     static public void UpdateScore(int points = 1)
     {
